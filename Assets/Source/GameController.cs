@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class GameController
+namespace PR.Controllers
 {
-    public ControllerContext m_ControllerContext = ControllerContext.NONE;
-
-    public virtual void ExecuteKeyPress(KeyCode key)
+    public abstract class GameController
     {
-        Debug.Log("ExecuteKeyPress() Not Implemented");
+        public ControllerContext m_ControllerContext = ControllerContext.NONE;
+
+        public virtual void ExecuteKeyPress(KeyCode key)
+        {
+            Debug.Log("ExecuteKeyPress() Not Implemented");
+        }
     }
 }

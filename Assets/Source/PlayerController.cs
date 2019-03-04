@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Source
+namespace PR.Controllers
 {
     public class PlayerController : GameController
     {
-        PlayerController()
+        public event EventHandler OnRequestMove;
+        public event EventHandler OnRequestInteract;
+
+        public PlayerController()
         {
             this.m_ControllerContext = ControllerContext.TRAVELING;
         }
 
         public override void ExecuteKeyPress(KeyCode key)
         {
-            switch(key)
+            switch (key)
             {
                 case KeyCode.W:
                 case KeyCode.A:
@@ -25,12 +28,23 @@ namespace Assets.Source
                 case KeyCode.S:
                     Move(key);
                     break;
+                case KeyCode.E:
+                    Interact();
+                    break;
             }
         }
 
         private void Move(KeyCode key)
         {
-            throw new NotImplementedException("Move is not implemented yet");
+            if (OnRequestMove != null)
+            {
+                OnRequestMove(this, null);
+            }
+        }
+
+        private void Interact()
+        {
+
         }
     }
 }
